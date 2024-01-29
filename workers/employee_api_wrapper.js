@@ -42,8 +42,8 @@ const insert_end_shift_wrapper = (args) =>{
   insertEndShiftTime(args);
 }
 
-const get_zuma_employees_wrapper = async () => {
-  return await getZumaEmployees();
+const get_zuma_employees_wrapper = (callback) => {
+  getZumaEmployees((data)=>{return callback(data)})
 }
 
 const get_json_employeeData_wrapper = async (args) => {

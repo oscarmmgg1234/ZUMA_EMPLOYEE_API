@@ -141,8 +141,8 @@ server.use("/EmployeeResourcesAPI/GPETS", (req, res, next) => {
 });
 
 //methods
-server.post("/EmployeeResourcesAPI/Zuma_Employees", async (req, res) => {
-  await Employee.g_z_employees((data) => {
+server.post("/EmployeeResourcesAPI/Zuma_Employees",(req, res) => {
+ Employee.g_z_employees((data) => {
     res.send(data);
   });
 });

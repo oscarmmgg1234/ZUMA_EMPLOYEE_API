@@ -13,7 +13,7 @@ class employee {
         return callback(get_json_employee_data(args));
     }
     g_z_employees(callback){
-        return callback(get_zuma_employees());
+        get_zuma_employees((data)=>{return callback(data)})
     }
     e_i_s_shift(args){
         insert_start_shift(args);

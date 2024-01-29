@@ -19,7 +19,7 @@ db.connect();
 const querys = {
   get_all_time_sheet:
     "SELECT EMPLOYEE_ID, COUNT(*) OVER() AS count FROM EMPLOYEE",
-  get_employees: "SELECT * FROM EMPLOYEE",
+  get_employees: "SELECT * FROM employee",
   get_count_shift_entry:
     "SELECT COUNT(*) AS entryCount FROM SHIFT_LOG WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
   insert_shift_employee:
@@ -269,12 +269,13 @@ const merge_pdf = async (buffers) => {
   return mergedPdfBytes;
 };
 
-const getEmployees = () => {
-  return new Promise((resolve) => {
-    db.query(querys.get_employees, (err, result) => {
-      resolve(Object.values(JSON.parse(JSON.stringify(result))));
-    });
-  });
+const getEmployees = (callback) => {
+ db.execute(querys.get_employees, (err, result)=> {
+  if(err){
+    console.log(err);
+  }
+  return callback(result)
+ })
 };
 
 const previewTransformEndShift = (args) => {
