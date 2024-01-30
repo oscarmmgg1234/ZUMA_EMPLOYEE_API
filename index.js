@@ -245,7 +245,17 @@ server.post("/EmployeeResourcesAPI/FetchEmployeeAssignEntries", (req, res) => {
   });
 });
 
+server.post("/addEmployees", (req, res) => {
+  const body = req.body;
+  Employee.addEmployee([]);
+})
+server.post("/deleteEmployee", (req, res) => {
+  const body = req.body;
+  Employee.deleteEmployee([body.employee_id]);
+})
+
 //poll
 server.listen(env_data.server_port, () => {
   console.log(`Example  server listening on port ${env_data.server_port}`);
 });
+

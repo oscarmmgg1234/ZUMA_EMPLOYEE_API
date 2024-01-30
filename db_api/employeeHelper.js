@@ -5,11 +5,6 @@ const Handlebars = require("handlebars");
 const { PDFDocument } = require("pdf-lib");
 const { request } = require("../models/models_interface/request_interface");
 const wkhtmltopdf = require("wkhtmltopdf");
-const { query } = require("express");
-const {
-  employee,
-} = require("../workers/employee_interface/employee_interface");
-const { parse } = require("path");
 const req = new request();
 var html = fs.readFileSync("./html_templates/time_sheet.html", "utf8");
 
@@ -17,6 +12,9 @@ const db = db_init();
 db.connect();
 
 const querys = {
+  deleteEmployee: "DELETE FROM EMPLOYEE WHERE EMPLOYEE_ID = ?",
+  addEmployee:
+    "INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, EMAIL, PHONE, LOCATION, TITLE, WAGE) VALUES (?,?,?,?,?,?,?)",
   get_all_time_sheet:
     "SELECT EMPLOYEE_ID, COUNT(*) OVER() AS count FROM EMPLOYEE",
   get_employees: "SELECT * FROM employee",
@@ -53,6 +51,22 @@ const querys = {
     "SELECT * FROM WORK_ASSIGNMENT WHERE EMPLOYEE_ID = ? AND ASSIGNMENT_DATE >= ? AND ASSIGNMENT_DATE <= ?",
   get_e_assignments:
     "SELECT * FROM WORK_ASSIGNMENT EMPLOYEE_ID = ? AND ASSIGNMENT_DATE = ?",
+};
+
+const deleteEmployee = (args) => {
+  db.execute(querys.deleteEmployee, args, (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+};
+
+const addEmployee = (args) => {
+  db.execute(querys.addEmployee, args, (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
 };
 
 const insertStartShiftTimeSlot = (args) => {
@@ -270,12 +284,12 @@ const merge_pdf = async (buffers) => {
 };
 
 const getEmployees = (callback) => {
- db.execute(querys.get_employees, (err, result)=> {
-  if(err){
-    console.log(err);
-  }
-  return callback(result)
- })
+  db.execute(querys.get_employees, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    return callback(result);
+  });
 };
 
 const previewTransformEndShift = (args) => {
@@ -682,3 +696,9 @@ exports.PreviewRemoveShift = previewRemoveShift;
 exports.addAssignment = addAssignment;
 exports.previewEditAssignment = previewEditAssignment;
 exports.editAssignment = editAssignment;
+exports.addEmployee = (args) => {
+  addEmployee(args);
+};
+exports.deleteEmployee = (args) => {
+  deleteEmployee(args);
+};
