@@ -275,6 +275,15 @@ server.post("/deleteEmployee", (req, res) => {
   res.send("Employee Deleted");
 });
 
+server.post("/setSchedule", (req, res) => {
+  const body = req.body;
+  Employee.set_schedule({
+    employee_id: body.employee_id,
+    schedule: body.schedule,
+  });
+  res.send("Schedule Set");
+});
+
 //poll
 server.listen(env_data.server_port, () => {
   console.log(`Example  server listening on port ${env_data.server_port}`);

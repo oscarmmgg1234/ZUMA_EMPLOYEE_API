@@ -5,6 +5,7 @@ const Handlebars = require("handlebars");
 const { PDFDocument } = require("pdf-lib");
 const { request } = require("../models/models_interface/request_interface");
 const wkhtmltopdf = require("wkhtmltopdf");
+const { mainPopulate } = require("./populate");
 const req = new request();
 var html = fs.readFileSync("./html_templates/time_sheet.html", "utf8");
 
@@ -51,6 +52,21 @@ const querys = {
     "SELECT * FROM WORK_ASSIGNMENT WHERE EMPLOYEE_ID = ? AND ASSIGNMENT_DATE >= ? AND ASSIGNMENT_DATE <= ?",
   get_e_assignments:
     "SELECT * FROM WORK_ASSIGNMENT EMPLOYEE_ID = ? AND ASSIGNMENT_DATE = ?",
+};
+
+// mainPopulate({
+//   employee_id: "00004",
+//    schedule: {
+//     mon: [7, 15],
+//     tue: [7, 15],
+//     wed: [7, 9],
+//     thu: [7, 10],
+//     fri: [7, 22],
+//   },
+// })
+
+const setSchedule = (args) => {
+  mainPopulate(args);
 };
 
 const deleteEmployee = (args) => {
@@ -698,3 +714,4 @@ exports.previewEditAssignment = previewEditAssignment;
 exports.editAssignment = editAssignment;
 exports.addEmployee = addEmployee;
 exports.deleteEmployee = deleteEmployee;
+exports.setSchedule = setSchedule;

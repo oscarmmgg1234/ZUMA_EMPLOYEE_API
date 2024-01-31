@@ -1,83 +1,102 @@
-
 const {
-  GeneratePDF, getEmployeeInfo, 
-  insertStartShiftTime, insertEndShiftTime, getZumaEmployees,
-  getJsonEmployeeData, GeneratePDF_ALL, PreviewEndTransformation, PreviewStartTransformation,
-transformEndShift, transformStartShift, removeShift, PreviewRemoveShift, addAssignment, previewEditAssignment, editAssignment,
-addEmployee, deleteEmployee}
-  = require("../db_api/employeeHelper");
+  GeneratePDF,
+  getEmployeeInfo,
+  insertStartShiftTime,
+  insertEndShiftTime,
+  getZumaEmployees,
+  getJsonEmployeeData,
+  GeneratePDF_ALL,
+  PreviewEndTransformation,
+  PreviewStartTransformation,
+  transformEndShift,
+  transformStartShift,
+  removeShift,
+  PreviewRemoveShift,
+  addAssignment,
+  previewEditAssignment,
+  editAssignment,
+  addEmployee,
+  deleteEmployee,
+  setSchedule,
+} = require("../db_api/employeeHelper");
+
+const set_schedule = (args) => {
+  setSchedule(args);
+};
 
 const remove_shift = (args) => {
   removeShift(args);
-}
+};
 
-const add_employee = (args) =>{
+const add_employee = (args) => {
   addEmployee(args);
-}
+};
 
-const delete_employee = (args) =>{
+const delete_employee = (args) => {
   deleteEmployee(args);
-}
+};
 
 const preview_remove_shift = async (args) => {
   return await PreviewRemoveShift(args);
-}
+};
 
 const transform_end_shift = (args) => {
   transformEndShift(args);
-}
+};
 
 const transform_start_shift = (args) => {
   transformStartShift(args);
-}
+};
 
 const generate_timesheet_pdf_wrapper = async (args) => {
   return await GeneratePDF(args);
-}
+};
 
-const generate_time_all_wrapper = async (args) =>{
+const generate_time_all_wrapper = async (args) => {
   return await GeneratePDF_ALL(args);
-}
+};
 
-const get_employee_info_wrapper = async (args) =>{
+const get_employee_info_wrapper = async (args) => {
   return await getEmployeeInfo(args);
-}
+};
 
 const insert_start_shift_wrapper = (args) => {
   insertStartShiftTime(args);
-}
+};
 
-const insert_end_shift_wrapper = (args) =>{
+const insert_end_shift_wrapper = (args) => {
   insertEndShiftTime(args);
-}
+};
 
 const get_zuma_employees_wrapper = (callback) => {
-  getZumaEmployees((data)=>{return callback(data)})
-}
+  getZumaEmployees((data) => {
+    return callback(data);
+  });
+};
 
 const get_json_employeeData_wrapper = async (args) => {
-return await getJsonEmployeeData(args);
-}
+  return await getJsonEmployeeData(args);
+};
 
 const preview_end_shift = async (args) => {
   return await PreviewEndTransformation(args);
-}
+};
 
 const preview_start_shift = async (args) => {
   return await PreviewStartTransformation(args);
-}
+};
 
 const add_assignment = (args) => {
   addAssignment(args);
-}
+};
 
 const preview_edit_assignment = async (args) => {
   return await previewEditAssignment(args);
-}
+};
 
 const edit_assignment = (args) => {
   editAssignment(args);
-}
+};
 
 exports.generate_pdf = generate_timesheet_pdf_wrapper;
 exports.get_employee_info = get_employee_info_wrapper;
@@ -97,3 +116,4 @@ exports.previewEditAssignment = preview_edit_assignment;
 exports.editAssignment = edit_assignment;
 exports.add_employee = add_employee;
 exports.delete_employee = delete_employee;
+exports.set_schedule = set_schedule;
