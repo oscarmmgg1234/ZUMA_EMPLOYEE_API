@@ -63,7 +63,7 @@ const querys = {
 //     thu: [7, 10],
 //     fri: [7, 22],
 //   },
-// })
+// })npm st
 
 const setSchedule = (args) => {
   mainPopulate(args);
