@@ -11,11 +11,11 @@ const remove_shift = (args) => {
   removeShift(args);
 }
 
-const addEmployee = (args) =>{
+const add_employee = (args) =>{
   addEmployee(args);
 }
 
-const deleteEmployee = (args) =>{
+const delete_employee = (args) =>{
   deleteEmployee(args);
 }
 
@@ -95,5 +95,5 @@ exports.previewRemoveShift = preview_remove_shift;
 exports.addAssignment = add_assignment;
 exports.previewEditAssignment = preview_edit_assignment;
 exports.editAssignment = edit_assignment;
-exports.addEmployee = addEmployee;
-exports.deleteEmployee = deleteEmployee;
+exports.add_employee = add_employee;
+exports.delete_employee = delete_employee;

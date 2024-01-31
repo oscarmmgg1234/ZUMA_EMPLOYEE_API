@@ -8,12 +8,22 @@ const fs = require("fs");
 const { request } = require("./models/models_interface/request_interface");
 const { employee } = require("./workers/employee_interface/employee_interface");
 var bodyParser = require("body-parser");
-const { connect } = require("http2");
 
 const sslOptions = {
   key: fs.readFileSync(path.join(__dirname, "cert", "key.pem")),
   cert: fs.readFileSync(path.join(__dirname, "cert", "cert.pem")),
 };
+
+function generateRandomString(length) {
+  var result = "";
+  var characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 
 const request_model = new request();
 const Employee = new employee();
@@ -141,8 +151,8 @@ server.use("/EmployeeResourcesAPI/GPETS", (req, res, next) => {
 });
 
 //methods
-server.post("/EmployeeResourcesAPI/Zuma_Employees",(req, res) => {
- Employee.g_z_employees((data) => {
+server.post("/EmployeeResourcesAPI/Zuma_Employees", (req, res) => {
+  Employee.g_z_employees((data) => {
     res.send(data);
   });
 });
@@ -245,17 +255,27 @@ server.post("/EmployeeResourcesAPI/FetchEmployeeAssignEntries", (req, res) => {
   });
 });
 
-server.post("/addEmployees", (req, res) => {
+server.post("/addEmployee", (req, res) => {
   const body = req.body;
-  Employee.addEmployee([]);
-})
+  Employee.addEmployee([
+    generateRandomString(5),
+    body.name,
+    body.email,
+    body.phone,
+    body.location,
+    body.title,
+    body.wage,
+  ]);
+  res.send("Employee Added");
+});
+
 server.post("/deleteEmployee", (req, res) => {
   const body = req.body;
   Employee.deleteEmployee([body.employee_id]);
-})
+  res.send("Employee Deleted");
+});
 
 //poll
 server.listen(env_data.server_port, () => {
   console.log(`Example  server listening on port ${env_data.server_port}`);
 });
-

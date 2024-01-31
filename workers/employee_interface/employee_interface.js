@@ -14,8 +14,8 @@ const {
   addAssignment,
   previewEditAssignment,
   editAssignment,
-  deleteEmployee,
-  addEmployee,
+  delete_employee,
+  add_employee,
 } = require("../employee_api_wrapper");
 
 class employee {
@@ -70,10 +70,10 @@ class employee {
     editAssignment(args);
   }
   addEmployee(args) {
-    addEmployee(args);
+    add_employee(args);
   }
   deleteEmployee(args) {
-    deleteEmployee(args);
+    delete_employee(args);
   }
 }
 

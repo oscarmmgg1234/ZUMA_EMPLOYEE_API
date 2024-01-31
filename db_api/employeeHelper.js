@@ -696,9 +696,5 @@ exports.PreviewRemoveShift = previewRemoveShift;
 exports.addAssignment = addAssignment;
 exports.previewEditAssignment = previewEditAssignment;
 exports.editAssignment = editAssignment;
-exports.addEmployee = (args) => {
-  addEmployee(args);
-};
-exports.deleteEmployee = (args) => {
-  deleteEmployee(args);
-};
+exports.addEmployee = addEmployee;
+exports.deleteEmployee = deleteEmployee;
