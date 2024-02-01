@@ -23,7 +23,7 @@ const insertShift = async (args, shift_start, shift_end, date_entry) => {
 
 const populate_db = async (args) => {
   const startDate = date.addDays(new Date(), -30);
-  const endDate = date.addDays(new Date(), 1500);
+  const endDate = date.addDays(new Date(), 200);
   let date_entry = new Date(startDate);
 
   while (date_entry <= endDate) {
