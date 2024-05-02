@@ -226,33 +226,32 @@ const GeneratePDF = async (args) => {
     employee_data[0].SHIFT_OTHOURS = TotalOTHours;
     employee_data[0].NAME = employee_data[0].NAME.toUpperCase();
     employee_data[0].SHIFT_DAYS = Days;
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      redirect: "follow",
+      cache: "no-cache",
+      body: JSON.stringify({
+        data: { employeeData: data, employee: employee_data[0] },
+        template: "TIMESHEET",
+      }),
+    };
 
-    var templateSRC = Handlebars.compile(html);
-    const input_data = { employeeData: data, employee: employee_data[0] };
-    const output_html = templateSRC(input_data);
-
-    let buffers = [];
-    wkhtmltopdf(
-      output_html,
-      {
-        pageSize: "letter",
-        orientation: "portrait",
-        marginTop: "5mm",
-        marginRight: "5mm",
-        marginBottom: "5mm",
-        marginLeft: "5mm",
-      },
-      (err, stream) => {
-        if (err) console.log(err);
-        stream.on("data", (data) => {
-          buffers.push(data);
-        });
-        stream.on("end", () => {
-          let blob = new Blob(buffers, { type: "application/pdf" });
-          Resolve(blob.arrayBuffer());
-        });
-      }
-    );
+    try {
+      const response = await fetch(
+        "http://localhost:3003/PDF/PDFA4_Generate",
+        requestOptions
+      );
+      if (!response.ok)
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      const PDF = await response.arrayBuffer();
+      Resolve(PDF);
+    } catch (error) {
+      console.error("Failed to fetch PDF:", error);
+      Reject(error);
+    }
   });
 };
 
