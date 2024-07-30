@@ -25,7 +25,7 @@ const querys = {
     "INSERT INTO SHIFT_LOG(EMPLOYEE_ID,SHIFT_START,SHIFT_DATE) VALUES (?,?,?)",
   insert_shift_end_employee:
     "UPDATE SHIFT_LOG SET SHIFT_END = ? WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
-  get_specific_employee_info: "SELECT * FROM EMPLOYEE WHERE EMPLOYEE_ID = ?",
+  get_specific_employee_info: "SELECT * FROM employee WHERE EMPLOYEE_ID = ?",
   get_shift_log:
     "SELECT * FROM SHIFT_LOG WHERE SHIFT_DATE >= ? AND SHIFT_DATE <= ? AND EMPLOYEE_ID = ?",
   get_specific_s_log:
