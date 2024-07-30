@@ -20,26 +20,26 @@ const querys = {
     "SELECT EMPLOYEE_ID, COUNT(*) OVER() AS count FROM employee",
   get_employees: "SELECT * FROM employee",
   get_count_shift_entry:
-    "SELECT COUNT(*) AS entryCount FROM SHIFT_LOG WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
+    "SELECT COUNT(*) AS entryCount FROM shift_log WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
   insert_shift_employee:
-    "INSERT INTO SHIFT_LOG(EMPLOYEE_ID,SHIFT_START,SHIFT_DATE) VALUES (?,?,?)",
+    "INSERT INTO shift_log(EMPLOYEE_ID,SHIFT_START,SHIFT_DATE) VALUES (?,?,?)",
   insert_shift_end_employee:
-    "UPDATE SHIFT_LOG SET SHIFT_END = ? WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
+    "UPDATE shift_log SET SHIFT_END = ? WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
   get_specific_employee_info: "SELECT * FROM employee WHERE EMPLOYEE_ID = ?",
   get_shift_log:
-    "SELECT * FROM SHIFT_LOG WHERE SHIFT_DATE >= ? AND SHIFT_DATE <= ? AND EMPLOYEE_ID = ?",
+    "SELECT * FROM shift_log WHERE SHIFT_DATE >= ? AND SHIFT_DATE <= ? AND EMPLOYEE_ID = ?",
   get_specific_s_log:
-    "SELECT * FROM SHIFT_LOG WHERE SHIFT_DATE = ? AND EMPLOYEE_ID = ?",
+    "SELECT * FROM shift_log WHERE SHIFT_DATE = ? AND EMPLOYEE_ID = ?",
   remove_shift_log:
-    "UPDATE SHIFT_LOG SET VALID = 0 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ? ",
+    "UPDATE shift_log SET VALID = 0 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ? ",
   revert_remove_shift_log:
-    "UPDATE SHIFT_LOG SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
+    "UPDATE shift_log SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
   transform_start_shift_log:
-    "UPDATE SHIFT_LOG SET SHIFT_START = ? WHERE EMPLOYEE_ID = ?",
+    "UPDATE shift_log SET SHIFT_START = ? WHERE EMPLOYEE_ID = ?",
   transform_end_shift_log:
-    "UPDATE SHIFT_LOG SET SHIFT_END = ? WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
+    "UPDATE shift_log SET SHIFT_END = ? WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
   transform_start_shift_log:
-    "UPDATE SHIFT_LOG SET SHIFT_START = ? WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
+    "UPDATE shift_log SET SHIFT_START = ? WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
   add_assignmnent_log:
     "INSERT INTO WORK_ASSIGNMENT(EMPLOYEE_ID, RANGET, START_ASSIGN, END_ASSIGN,ASSIGNMENT_DATE, ENTRY_ID ) VALUES (?,?,?,?,?,?)",
   transform_edit_assignment_start:
