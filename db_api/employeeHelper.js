@@ -13,11 +13,11 @@ const db = db_init();
 db.connect();
 
 const querys = {
-  deleteEmployee: "DELETE FROM EMPLOYEE WHERE EMPLOYEE_ID = ?",
+  deleteEmployee: "DELETE FROM employee WHERE EMPLOYEE_ID = ?",
   addEmployee:
-    "INSERT INTO EMPLOYEE(EMPLOYEE_ID, NAME, EMAIL, PHONE, LOCATION, TITLE, WAGE) VALUES (?,?,?,?,?,?,?)",
+    "INSERT INTO employee(EMPLOYEE_ID, NAME, EMAIL, PHONE, LOCATION, TITLE, WAGE) VALUES (?,?,?,?,?,?,?)",
   get_all_time_sheet:
-    "SELECT EMPLOYEE_ID, COUNT(*) OVER() AS count FROM EMPLOYEE",
+    "SELECT EMPLOYEE_ID, COUNT(*) OVER() AS count FROM employee",
   get_employees: "SELECT * FROM employee",
   get_count_shift_entry:
     "SELECT COUNT(*) AS entryCount FROM SHIFT_LOG WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
