@@ -32,7 +32,7 @@ const populate_db = async (args) => {
       // Handle weekend logic
       const shift_start = date.format(date_entry, "YYYY-MM-DD") + `T8:00:00`;
       db.query(
-        "INSERT INTO SHIFT_LOG(EMPLOYEE_ID,SHIFT_START,SHIFT_END,SHIFT_DATE) VALUES (?,?,?,?)",
+        "INSERT INTO shift_log(EMPLOYEE_ID,SHIFT_START,SHIFT_END,SHIFT_DATE) VALUES (?,?,?,?)",
         [
           args.employee_id,
           shift_start,
