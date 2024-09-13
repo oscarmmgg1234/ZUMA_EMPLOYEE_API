@@ -66,16 +66,26 @@ const main = async (args) => {
 
   try {
     db.query(check_query, [args.employee_id], (err, result) => {
-      const res = Object.values(JSON.parse(JSON.stringify(result)));
-      if (res[0].entryCount > 0) {
-        db.query(delete_query, [args.employee_id]);
-        setTimeout(() => {
-          populate_db(args);
-        }, 400);
+      if (err) {
+        console.error("Error executing query: ", err);
         return;
       }
 
-      populate_db(args);
+      const res = result[0]; // Access the first row
+      if (res.entryCount > 0) {
+        db.query(delete_query, [args.employee_id], (err) => {
+          if (err) {
+            console.error("Error deleting records: ", err);
+            return;
+          }
+
+          setTimeout(() => {
+            populate_db(args);
+          }, 400);
+        });
+      } else {
+        populate_db(args);
+      }
     });
   } catch (err) {
     console.error("Error in main function: ", err);
