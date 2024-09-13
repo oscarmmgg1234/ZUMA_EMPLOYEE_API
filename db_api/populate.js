@@ -61,8 +61,8 @@ const populate_db = async (args) => {
 
 const main = async (args) => {
   const check_query =
-    "SELECT COUNT(*) as entryCount FROM SHIFT_LOG WHERE EMPLOYEE_ID = ?";
-  const delete_query = "DELETE FROM SHIFT_LOG WHERE EMPLOYEE_ID = ?";
+    "SELECT COUNT(*) as entryCount FROM shift_log WHERE EMPLOYEE_ID = ?";
+  const delete_query = "DELETE FROM shift_log WHERE EMPLOYEE_ID = ?";
 
   try {
     db.query(check_query, [args.employee_id], (err, result) => {
