@@ -11,7 +11,7 @@ const check_weekend = (day) => {
 
 const insertShift = async (args, shift_start, shift_end, date_entry) => {
   const query =
-    "INSERT INTO SHIFT_LOG(EMPLOYEE_ID,SHIFT_START,SHIFT_END,SHIFT_DATE) VALUES (?,?,?,?)";
+    "INSERT INTO shift_log(EMPLOYEE_ID,SHIFT_START,SHIFT_END,SHIFT_DATE) VALUES (?,?,?,?)";
   const date_pattern = date.compile("YYYY-MM-DD");
   db.query(query, [
     args.employee_id,
