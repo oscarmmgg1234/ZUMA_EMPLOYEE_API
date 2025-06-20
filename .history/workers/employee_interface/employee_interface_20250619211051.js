@@ -80,9 +80,7 @@ class employee {
   set_schedule(args) {
     set_schedule(args);
   }
-  removeRange(args) {
-    removeRangeWrapper(args);
-  }
+  
 }
 
 exports.employee = employee;

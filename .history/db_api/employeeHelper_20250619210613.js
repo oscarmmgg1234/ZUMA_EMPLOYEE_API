@@ -543,7 +543,6 @@ const removeShift = (args) => {
 
   const date_pattern = date.compile("YYYY-MM-DD");
   // const newDate = date.addDays(new Date(args.date), -1);
-  //args = {e_id, date, revert}
   if (args.revert == false) {
     db.query(querys.remove_shift_log, [
       args.e_id,
@@ -573,7 +572,6 @@ const removeRangeShift = (args) => {
       date.format(new Date(args.range_start), date_pattern),
       date.format(new Date(args.range_end), date_pattern),
     ]);
-    
   }
 };
 // 3-4 weeks ~~~
@@ -745,4 +743,3 @@ exports.editAssignment = editAssignment;
 exports.addEmployee = addEmployee;
 exports.deleteEmployee = deleteEmployee;
 exports.setSchedule = setSchedule;
-exports.removeRange = removeRangeShift;

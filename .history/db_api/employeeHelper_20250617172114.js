@@ -32,12 +32,6 @@ const querys = {
     "SELECT * FROM shift_log WHERE SHIFT_DATE = ? AND EMPLOYEE_ID = ?",
   remove_shift_log:
     "UPDATE shift_log SET VALID = 0 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ? ",
-  remove_range_shift_log:
-    "UPDATE shift_log SET VALID = 0 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE >= ? AND SHIFT_DATE <= ?",
-  revert_remove_shift_log:
-    "UPDATE shift_log SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
-  revert_remove_range_shift_log:
-    "UPDATE shift_log SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE >= ? AND SHIFT_DATE <= ?",
   revert_remove_shift_log:
     "UPDATE shift_log SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
   transform_start_shift_log:
@@ -211,7 +205,7 @@ const getEmployee_formatted = (args) => {
 };
 
 // We need to change this up, we need major refactors in this code
-// We can redoo and maybe add template editing features, we need to ask for money for these features
+// We can redoo and maybe add template editing features,
 
 const GeneratePDF = async (args) => {
   return new Promise(async (Resolve) => {
@@ -228,7 +222,7 @@ const GeneratePDF = async (args) => {
       }
     });
     const pattern = date.compile("MMM DD YYYY");
-
+    
     employee_data[0].SHIFT_START = date.format(args.range_start, pattern);
     employee_data[0].SHIFT_END = date.format(args.range_end, pattern);
     employee_data[0].SHIFT_HOURS = TotalHours;
@@ -539,11 +533,10 @@ const transformStartShift = (args) => {
 };
 
 const removeShift = (args) => {
-  // We need to add range to this function so that we can add a range to remove the shifts
+// We need to add range to this function so that we can add a range to remove the shifts 
 
   const date_pattern = date.compile("YYYY-MM-DD");
   // const newDate = date.addDays(new Date(args.date), -1);
-  //args = {e_id, date, revert}
   if (args.revert == false) {
     db.query(querys.remove_shift_log, [
       args.e_id,
@@ -557,25 +550,6 @@ const removeShift = (args) => {
   }
 };
 
-const removeRangeShift = (args) => {
-  //args = {e_id, range_start, range_end, revert}
-
-  const date_pattern = date.compile("YYYY-MM-DD");
-  if (args.revert == false) {
-    db.query(querys.remove_range_shift_log, [
-      args.e_id,
-      date.format(new Date(args.range_start), date_pattern),
-      date.format(new Date(args.range_end), date_pattern),
-    ]);
-  } else {
-    db.query(querys.revert_remove_shift_log, [
-      args.e_id,
-      date.format(new Date(args.range_start), date_pattern),
-      date.format(new Date(args.range_end), date_pattern),
-    ]);
-    
-  }
-};
 // 3-4 weeks ~~~
 // PHASE ONE OF SYSTEM DONEE!!!
 //overall work
@@ -745,4 +719,3 @@ exports.editAssignment = editAssignment;
 exports.addEmployee = addEmployee;
 exports.deleteEmployee = deleteEmployee;
 exports.setSchedule = setSchedule;
-exports.removeRange = removeRangeShift;

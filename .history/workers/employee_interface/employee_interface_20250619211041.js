@@ -17,7 +17,7 @@ const {
   delete_employee,
   add_employee,
   set_schedule,
-  removeRangeWrapper
+  
 } = require("../employee_api_wrapper");
 
 class employee {
@@ -79,9 +79,6 @@ class employee {
   }
   set_schedule(args) {
     set_schedule(args);
-  }
-  removeRange(args) {
-    removeRangeWrapper(args);
   }
 }
 

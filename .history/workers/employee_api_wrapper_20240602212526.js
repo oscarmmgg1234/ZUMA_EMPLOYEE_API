@@ -18,12 +18,7 @@ const {
   addEmployee,
   deleteEmployee,
   setSchedule,
-  removeRange
 } = require("../db_api/employeeHelper");
-
-const removeRangeWrapper = (args) => {
-  removeRange(args);
-}
 
 const set_schedule = (args) => {
   setSchedule(args);
@@ -122,4 +117,3 @@ exports.editAssignment = edit_assignment;
 exports.add_employee = add_employee;
 exports.delete_employee = delete_employee;
 exports.set_schedule = set_schedule;
-exports.removeRangeWrapper = removeRangeWrapper;

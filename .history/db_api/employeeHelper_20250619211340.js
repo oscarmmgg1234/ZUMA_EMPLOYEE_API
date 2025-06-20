@@ -567,13 +567,13 @@ const removeRangeShift = (args) => {
       date.format(new Date(args.range_start), date_pattern),
       date.format(new Date(args.range_end), date_pattern),
     ]);
+    return 
   } else {
     db.query(querys.revert_remove_shift_log, [
       args.e_id,
       date.format(new Date(args.range_start), date_pattern),
       date.format(new Date(args.range_end), date_pattern),
     ]);
-    
   }
 };
 // 3-4 weeks ~~~

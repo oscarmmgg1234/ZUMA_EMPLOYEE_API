@@ -573,7 +573,6 @@ const removeRangeShift = (args) => {
       date.format(new Date(args.range_start), date_pattern),
       date.format(new Date(args.range_end), date_pattern),
     ]);
-    
   }
 };
 // 3-4 weeks ~~~

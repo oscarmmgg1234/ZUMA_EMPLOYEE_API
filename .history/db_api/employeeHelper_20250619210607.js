@@ -38,8 +38,7 @@ const querys = {
     "UPDATE shift_log SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
   revert_remove_range_shift_log:
     "UPDATE shift_log SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE >= ? AND SHIFT_DATE <= ?",
-  revert_remove_shift_log:
-    "UPDATE shift_log SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE = ?",
+  
   transform_start_shift_log:
     "UPDATE shift_log SET SHIFT_START = ? WHERE EMPLOYEE_ID = ?",
   transform_end_shift_log:
@@ -543,7 +542,6 @@ const removeShift = (args) => {
 
   const date_pattern = date.compile("YYYY-MM-DD");
   // const newDate = date.addDays(new Date(args.date), -1);
-  //args = {e_id, date, revert}
   if (args.revert == false) {
     db.query(querys.remove_shift_log, [
       args.e_id,
@@ -573,7 +571,6 @@ const removeRangeShift = (args) => {
       date.format(new Date(args.range_start), date_pattern),
       date.format(new Date(args.range_end), date_pattern),
     ]);
-    
   }
 };
 // 3-4 weeks ~~~
@@ -745,4 +742,3 @@ exports.editAssignment = editAssignment;
 exports.addEmployee = addEmployee;
 exports.deleteEmployee = deleteEmployee;
 exports.setSchedule = setSchedule;
-exports.removeRange = removeRangeShift;

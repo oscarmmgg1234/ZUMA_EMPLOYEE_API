@@ -221,8 +221,7 @@ server.post("/EmployeeResourcesAPI/RemoveShift", (req, res) => {
   res.send({ status: "removed" });
 });
 
-//entry point for removing range of shifts for the employee
-//This system needs major refactors haha, this was my first project for zuma 3 years ago ive learned a lot since then haha
+//entry 
 server.post("/EmployeeResourcesAPI/RangeRemoveShift", (req, res) => {
   Employee.removeRangeWrapper(req.body);
 });
