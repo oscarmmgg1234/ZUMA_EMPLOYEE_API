@@ -17,9 +17,13 @@ const {
   delete_employee,
   add_employee,
   set_schedule,
+  removeRange,
 } = require("../employee_api_wrapper");
 
 class employee {
+  removeRange(args) {
+    removeRange(args);
+  }
   async gen_pdf(args) {
     return await generate_pdf(args);
   }

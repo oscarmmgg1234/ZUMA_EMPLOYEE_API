@@ -52,6 +52,12 @@ const querys = {
     "SELECT * FROM WORK_ASSIGNMENT WHERE EMPLOYEE_ID = ? AND ASSIGNMENT_DATE >= ? AND ASSIGNMENT_DATE <= ?",
   get_e_assignments:
     "SELECT * FROM WORK_ASSIGNMENT EMPLOYEE_ID = ? AND ASSIGNMENT_DATE = ?",
+  previewRemoveRangeShift:
+    "UPDATE shift_log SET VALID = 0 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE BETWEEN ? AND ?",
+  RemoveRangeShift:
+    "UPDATE shift_log SET VALID = 0 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE BETWEEN ? AND ?",
+  revertRangeShift:
+    "UPDATE shift_log SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE BETWEEN ? AND ?",
 };
 
 // mainPopulate({
@@ -545,6 +551,28 @@ const removeShift = (args) => {
   }
 };
 
+// previewRemoveRangeShift:
+//     "UPDATE shift_log SET VALID = 0 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE BETWEEN ? AND ?",
+//   RemoveRangeShift:
+//     "UPDATE shift_log SET VALID = 0 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE BETWEEN ? AND ?",
+
+const RemoveRangeShift = (args) => {
+  const date_pattern = date.compile("YYYY-MM-DD");
+  if (args.revert == false) {
+    db.query(querys.RemoveRangeShift, [
+      args.e_id,
+      date.format(new Date(args.startDate), date_pattern),
+      date.format(new Date(args.endDate), date_pattern),
+    ]);
+  } else {
+    db.query(querys.revertRangeShift, [
+      args.e_id,
+      date.format(new Date(args.startDate), date_pattern),
+      date.format(new Date(args.endDate), date_pattern),
+    ]);
+  }
+};
+
 // 3-4 weeks ~~~
 // PHASE ONE OF SYSTEM DONEE!!!
 //overall work
@@ -714,3 +742,4 @@ exports.editAssignment = editAssignment;
 exports.addEmployee = addEmployee;
 exports.deleteEmployee = deleteEmployee;
 exports.setSchedule = setSchedule;
+exports.RemoveRangeShift = RemoveRangeShift;

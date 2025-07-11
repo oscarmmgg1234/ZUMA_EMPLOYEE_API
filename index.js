@@ -284,6 +284,12 @@ server.post("/setSchedule", (req, res) => {
   res.send("Schedule Set");
 });
 
+server.post("/removeRangeShift", (req, res) => {
+  const body = req.body;
+  Employee.removeRange(body);
+  res.send("Dates changed")
+});
+
 //poll
 server.listen(env_data.server_port, () => {
   console.log(`Example  server listening on port ${env_data.server_port}`);
