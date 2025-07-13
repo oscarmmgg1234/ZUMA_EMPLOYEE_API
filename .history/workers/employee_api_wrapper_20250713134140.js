@@ -22,9 +22,8 @@ const {
   getShiftLogs,
 } = require("../db_api/employeeHelper");
 
-const getSLogs = async (args) => {
-  return await getShiftLogs(args);
-};
+const getShiftLs = 
+
 const removeRangeShift = (args) => {
   RemoveRangeShift(args);
 }
@@ -126,4 +125,3 @@ exports.add_employee = add_employee;
 exports.delete_employee = delete_employee;
 exports.set_schedule = set_schedule;
 exports.removeRange = removeRangeShift;
-exports.getShiftLogs = getSLogs;

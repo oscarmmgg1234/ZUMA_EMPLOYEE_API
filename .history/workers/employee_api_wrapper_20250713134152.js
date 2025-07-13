@@ -126,4 +126,3 @@ exports.add_employee = add_employee;
 exports.delete_employee = delete_employee;
 exports.set_schedule = set_schedule;
 exports.removeRange = removeRangeShift;
-exports.getShiftLogs = getSLogs;

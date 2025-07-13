@@ -764,4 +764,3 @@ exports.addEmployee = addEmployee;
 exports.deleteEmployee = deleteEmployee;
 exports.setSchedule = setSchedule;
 exports.RemoveRangeShift = RemoveRangeShift;
-exports.getShiftLogs = getShiftLogs;

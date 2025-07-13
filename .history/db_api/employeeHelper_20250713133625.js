@@ -58,8 +58,6 @@ const querys = {
     "UPDATE shift_log SET VALID = 0 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE BETWEEN ? AND ?",
   revertRangeShift:
     "UPDATE shift_log SET VALID = 1 WHERE EMPLOYEE_ID = ? AND SHIFT_DATE BETWEEN ? AND ?",
-  get_shift_log_by_eid:
-    "SELECT * FROM shift_log WHERE EMPLOYEE_ID = ? AND SHIFT_DATE BETWEEN ? AND ?",
 };
 
 // mainPopulate({
@@ -72,25 +70,6 @@ const querys = {
 //     fri: [7, 22],
 //   },
 // })npm st
-
-const getShiftLogs = (args) => {
-  console.log(args);
-  return new Promise((resolve) => {
-    db.query(
-      querys.get_shift_log_by_eid,
-      [args.e_id, args.range_start, args.range_end],
-      (err, result) => {
-        if (err) {
-          console.log(err);
-          resolve([]);
-        } else {
-          const data = Object.values(JSON.parse(JSON.stringify(result)));
-          resolve(data);
-        }
-      }
-    );
-  });
-};
 
 const setSchedule = (args) => {
   mainPopulate(args);
@@ -764,4 +743,3 @@ exports.addEmployee = addEmployee;
 exports.deleteEmployee = deleteEmployee;
 exports.setSchedule = setSchedule;
 exports.RemoveRangeShift = RemoveRangeShift;
-exports.getShiftLogs = getShiftLogs;

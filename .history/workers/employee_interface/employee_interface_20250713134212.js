@@ -18,13 +18,10 @@ const {
   add_employee,
   set_schedule,
   removeRange,
-  getShiftLogs,
+  getShiftLogs
 } = require("../employee_api_wrapper");
 
 class employee {
-  async getShiftLogs(args) {
-    return await getShiftLogs(args);
-  }
   removeRange(args) {
     removeRange(args);
   }

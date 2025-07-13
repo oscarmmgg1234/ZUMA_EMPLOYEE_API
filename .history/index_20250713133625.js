@@ -290,17 +290,6 @@ server.post("/removeRangeShift", (req, res) => {
   res.send("Dates changed")
 });
 
-server.post("/getShiftLogs", async (req, res) => {
-  const body = req.body;
-  try {
-    const data = await Employee.getShiftLogs(body);
-    res.send(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).send(error);
-  }
-});
-
 //poll
 server.listen(env_data.server_port, () => {
   console.log(`Example  server listening on port ${env_data.server_port}`);
