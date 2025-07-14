@@ -16,7 +16,6 @@ const mysql = require("mysql2");
 //   secureProtocol: "TLSv1_2_method", // Specify the TLS version (optional)
 // };
 // Create a connection to your MySQL database
-
 const db = mysql.createConnection({
   host: "76.50.237.33",
   user: "oscar",
