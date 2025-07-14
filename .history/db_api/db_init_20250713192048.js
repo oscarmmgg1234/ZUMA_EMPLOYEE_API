@@ -17,7 +17,7 @@ const mysql = require("mysql2");
 // };
 // Create a connection to your MySQL database
 const db = mysql.createConnection({
-  host: "192.168.1.218",
+  host: "192.",
   user: "oscar",
   port: 3306,
   password: "Omariscool1234!",
