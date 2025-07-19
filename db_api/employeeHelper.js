@@ -267,7 +267,7 @@ const GeneratePDF = async (args) => {
 
     try {
       const response = await fetch(
-        "http://192.168.1.176:3003/PDF/PDFA4_Generate",
+        "http://localhost:3003/PDF/PDFA4_Generate",
         requestOptions
       );
       if (!response.ok)
